@@ -3,6 +3,13 @@
 
 #include <parser.hpp>
 #include <sstream>
+std::string getFullPath(const std::string& name) {
+  std::string s(__FILE__);
+  for (size_t i = 0; i < 8; ++i) {
+    s.pop_back();
+  }
+  return s + name;
+}
 TEST(Parser, Empty_path) { ASSERT_THROW(Parser(""), std::invalid_argument); }
 TEST(Parser, Opening_file) {
   ASSERT_THROW(Parser("my_jso.json"), std::runtime_error);
@@ -11,9 +18,7 @@ TEST(Parser, Empty_json) {
   ASSERT_THROW(Parser(R"({})"), std::invalid_argument);
 }
 TEST(Parser, Empty_file) {
-  Parser pars(
-      "/home/baha/Alex-kku/workspace/projects/C++/lab-01-parser/tests/"
-      "example_json.json");
+  Parser pars(getFullPath("example_json.json"));
   std::stringstream str;
   str << pars;
   std::string str_example(R"(| name             | group  | avg  | debt         |
@@ -54,9 +59,7 @@ TEST(Parser, Count_items) {
                std::out_of_range);
 }
 TEST(Parser, correct_output) {
-  Parser pars(
-      "/home/baha/Alex-kku/workspace/projects/C++/lab-01-parser/tests/"
-      "my_json.json");
+  Parser pars(getFullPath("my_json.json"));
   std::stringstream str;
   str << pars;
   std::string str_example(R"(| name          | group  | avg  | debt         |
