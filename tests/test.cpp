@@ -29,9 +29,6 @@ TEST(Parser, Empty_file) {
   std::vector<size_t> column_width{19, 9, 7, 15};
   std::vector<std::string> column_name{"name", "group", "avg", "debt"};
   ASSERT_EQ(str.str(), str_example);
-  ASSERT_EQ(pars.getStudents()[0].getAvg().type(), typeid(std::nullptr_t));
-  ASSERT_EQ(pars.getColumn_width(), column_width);
-  ASSERT_EQ(pars.getColumn_name(), column_name);
 }
 TEST(Parser, Correct_array) {
   ASSERT_THROW(Parser(R"({"items": 0})"), std::invalid_argument);

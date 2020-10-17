@@ -34,11 +34,10 @@ Parser::Parser(const std::string& jsonPath) {
   }
 }
 void Parser::Print_columns(std::ostream& out) const {
-  for (size_t i = 0; i < 4; ++i) {
-    out << std::setfill(' ') << std::left << std::setw(column_width[i])
-        << "| " + column_name[i];
-  }
-  out << '|' << std::endl;
+  out << std::setfill(' ') << std::left << std::setw(column_width[0])
+      << "| name" << std::setw(column_width[1]) << "| group"
+      << std::setw(column_width[2]) << "| avg" << std::setw(column_width[3])
+      << "| debt" << '|' << std::endl;
 }
 void Parser::Print_lines(std::ostream& out) const {
   for (size_t i = 0; i < 4; ++i) {
@@ -46,14 +45,7 @@ void Parser::Print_lines(std::ostream& out) const {
   }
   out << '|' << std::endl;
 }
-const std::vector<Student>& Parser::getStudents() const { return students; }
-const std::vector<size_t>& Parser::getColumn_width() const {
-  return column_width;
-}
-const std::vector<std::string>& Parser::getColumn_name() const {
-  return column_name;
-}
-std::ostream& operator<<(std::ostream& out, Parser& pars) {
+std::ostream& operator<<(std::ostream& out, const Parser& pars) {
   pars.Print_columns(out);
   pars.Print_lines(out);
   for (size_t i = 0; i < pars.students.size(); ++i) {
