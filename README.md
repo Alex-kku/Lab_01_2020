@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Alex-kku/Lab_01_2020.svg?branch=wp%2Flab)](https://travis-ci.org/Alex-kku/Lab_01_2020)
+
 # Лабораторная работа № 1
 
 ## Задание
